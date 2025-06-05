@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+\usepackage{anyfontsize,fontsize}
+\changefontsize[13pt]{13pt}
+\usepackage{commath}
+\usepackage[d]{esvect}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{slashed,cancel}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{upgreek}
+\usepackage{nccmath,nicematrix}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath,systeme}
+\usepackage[thinc]{esdiff}
+\usepackage{hyperref}
+\usepackage{bm,physics}
+\usepackage{fancyhdr}
+\usepackage[numbers,comma,sort&compress]{natbib}
+%footnote
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%
+\fancyhf{}%
+\fancyfoot[L]{Vật lý Lý thuyết}%
+\fancyfoot[C]{\hspace{6.5cm} \thepage}%
+
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+
+\newcommand{\image}[1]{
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=8.0cm,height=5.0cm]{pic/#1}
+		\label{#1}
+	\end{figure}
+}
+\renewcommand{\l}{\ell}
+\newcommand{\dps}{\displaystyle}
+\newcommand{\mean}[1]{\langle{#1}\rangle}
+\newcommand{\f}[2]{\dfrac{#1}{#2}}
+\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
+
+
+\renewcommand{\baselinestretch}{2.0}
+
+
+\title{\Huge{Tổng ôn kiến thức về lý thuyết gần đúng điện tử liên kết chặt}}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={},
+	pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+
+\begin{document}
+\setlength{\parindent}{20pt}
+\newpage
+\author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
+\maketitle
+\section{Giới thiệu}
+Trong phần này, chúng ta sẽ tổng hợp lại kiến thức về mô hình liên kết chặt hay mô hình gần đúng điện tử liên kết chặt. Bằng cách đi qua những gần đúng liên quan gần đúng điện tử tự do hoặc so sánh nó với phương pháp $\mathbf{k} \cdot \mathbf{p}$ để tìm ra những điểm khác nhau và giống nhau của hai phương pháp.
+
+Bên cạnh đó ở mục ... cũng có đi qua một mô hình được sử dụng từ bài báo thực tế để cho cái nhìn trực quan hơn.
+
+Phần code và file latex được publish ở trên \hyperlink{https://github.com/nguyn21012003/ReviewTBM}{github cá nhân}
+
+\section{Gần đúng điện tử tự do}
+Trong gần đúng điện tử độc lập, trạng thái dừng của điện tử trong chất rắn được mô tả bởi phương trình Schr\"{o}dinger một hạt không phụ thuộc thời gian
+\begin{gather}
+	H_{\text{1e}} \psi_{\nu,\mathbf{k}} (\mathbf{r}) = \left(-\frac{\hbar^{2} \nabla^{2}}{2m} + V_{0}(\mathbf{r})\right) \psi_{\nu,\mathbf{k}}(\mathbf{k}) = \epsilon_{\nu}(\mathbf{k}) \psi_{\nu,\mathbf{k}}(\mathbf{r}).
+\end{gather}
+Tức là trong mô hình đơn giản nhất, khi tương tác Coulomb giữa các điện tử được bỏ qua, tức là bài toán một hạt thì chúng ta sử dụng gần đúng điện tử tự do này. Bên cạnh đó, nếu bỏ qua thế tương tác, $V_{0}(\mathbf{r}) \to 0$, hàm sóng điện tử tự do có dạng sóng phẳng và nặng lượng của nó có dnạg hệ thức tán sắc (dispersion energy)
+\begin{gather}
+	\epsilon(\mathbf{k}) = \frac{\hbar^{2} k^{2}}{2m}.
+\end{gather}
+
+\section{Gần đúng điện tử liên kết chặt}
+
+Trong trường hợp điện tử liên kết chặt với hạt nhân nguyên tử, hàm sóng điện tử có dạng tương tự như các orbital nguyên tử và ta có thể biểu diễn nó bởi tổ hợp tuyến tính của các orbital nguyên tử (LCAO)
+
+\begin{gather}
+	\psi(\mathbf{r}) = \sum_{i}^{N_{a}} \sum_{\alpha}^{N_{\text{orb}}} C_{\alpha}(\mathbf{r}_{i}^{\alpha}) \phi_{\alpha}(\mathbf{r} - \mathbf{r}_{i}^{a}),
+\end{gather}
+trong đó $\phi_{\alpha}$ là các orbital của một nguyên tử định xứ (local) tại vị trí $\mathbf{r}_{i}^{a}$, $N_{a}$ là tổng số nguyên tử và $N_{\text{orb}}$ là tổng số orbital của một nguyên tử, $C_{\alpha}$ chính là nghiệm của bài toán có thể được giải bằng phương trình hàm riêng trị riêng. Thay phương trình (15) vào phương trình Schr\"{o}dinger trong gần dúng điện tử độc lập, (i.e phương trình (1))
+
+\begin{gather}
+	H_{1e}\psi(\mathbf{r}) = \left(- \frac{\hbar^{2}\nabla^{2}}{2m} - \sum_{i} \frac{Z_{i} e^{2}}{\abs{\mathbf{r} - \mathbf{r}_{i}^{a}}} \right) \psi(\mathbf{r}) = \epsilon \psi(\mathbf{r}).
+\end{gather}
+nhân trái với $\psi_{\beta}^{*}(\mathbf{r} - \mathbf{r}_{i}^{a})$ và lấy tích phân theo $\mathbf{r}$, ta được hệ phương trình theo $\alpha$ và $i$
+
+\begin{gather}
+	\sum_{i}^{N_{a}} \sum_{\alpha}^{N_{\text{orb}}} \left[H_{\beta \alpha} (\mathbf{r}_{j}^{a}, \mathbf{r}_{i}^{a}) - \epsilon S_{\beta \alpha} (\mathbf{r}_{j}^{a}, \mathbf{r}_{i}^{a}) \right] C_{\alpha}(\mathbf{r}_{i}^{a}) = 0,
+\end{gather}
+trong đó ta gọi $H_{\alpha \alpha}$ là năng lượng ``on-site''
+\begin{gather}
+	H_{\alpha \alpha} (\mathbf{r}_{i}^{a}, \mathbf{r}_{i}^{a}) = \dps \int d\mathbf{r} \phi_{\alpha}^{*}(\mathbf{r} - \mathbf{r}_{i}^{a}) H_{1e} \phi_{\alpha}(\mathbf{r} - \mathbf{r}_{i}^{a}),
+\end{gather}
+$H_{\beta \alpha}$ là năng lượng ``hopping'' 
+\begin{gather}
+	H_{\beta \alpha} (\mathbf{r}_{j}^{a}, \mathbf{r}_{i}^{a}) = \dps \int d\mathbf{r} \phi_{\beta}^{*}(\mathbf{r} - \mathbf{r}_{j}^{a}) H_{1e} \phi_{\alpha}(\mathbf{r} - \mathbf{r}_{i}^{a}), \quad i \neq j,
+\end{gather}
+và $S_{\beta \alpha} (\mathbf{r}_{j}^{a}, \mathbf{r}_{i}^{a})$  là tích phân chồng phủ ``overlap integral''
+\begin{gather}
+	S_{\beta \alpha} (\mathbf{r}_{j}^{a}, \mathbf{r}_{i}^{a}) = \dps \int d\mathbf{r} \phi_{\beta}^{*}(\mathbf{r} - \mathbf{r}_{j}^{a}) \phi_{\alpha}(\mathbf{r} - \mathbf{r}_{i}^{a})
+\end{gather}
+
+Để thuận tiện người ta thường sử dụng các orbital của nguyên tử Hydro
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c c}
+		\hline
+		Orbital $s$ hàm sóng là hàm chẵn & $\phi_{S} (\mathbf{r}) = R_{0}(r) \sqrt{\frac{1}{4\pi}}$ . \\
+		Orbital $p$ hàm sóng là hàm các hàm lẻ & $\phi_{X} (\mathbf{r}) = R_{1}(r) \sqrt{\frac{3}{4\pi}} \frac{x}{r}$ . \\
+		& $\phi_{Y} (\mathbf{r}) = R_{1}(r) \sqrt{\frac{3}{4\pi}} \frac{y}{r}$ . \\
+		& $\phi_{Z} (\mathbf{r}) = R_{1}(r) \sqrt{\frac{3}{4\pi}} \frac{z}{r}$ . \\
+		\hline
+	\end{tabular}
+	\caption{Một số orbital nguyên tử (xem thêm trong Griffiths \cite{griffiths2018introduction})}
+\end{table}
+
+Giả sử hàm sóng phân tử được cho bởi tổ hợp tuyến tính của các orbital nguyên tử $s$ của hai nguyên tử.
+\begin{gather}
+	\psi(\mathbf{r}) = C_{1} \phi_{s} (\mathbf{r} - \mathbf{r}_{1}^{a}) + C_{2} \phi_{s}(\mathbf{r} - \mathbf{r}_{2}^{a}),
+\end{gather}
+phương trình (5) có dạng
+
+\begin{equation}
+	\begin{aligned}
+		\begin{pNiceMatrix}
+			H_{11} - \epsilon &  H_{12} - \epsilon S_{12} \\
+			H_{21} - \epsilon S_{21} & H_{22} - \epsilon
+		\end{pNiceMatrix}
+		\begin{pNiceMatrix}
+			C_{1} \\
+			C_{2}
+		\end{pNiceMatrix}
+		= 0
+	\end{aligned}
+\end{equation}
+trong đó
+\begin{gather}
+	H_{ij} = \dps \int d \mathbf{r} \phi_{s}^{*} (\mathbf{r} - \mathbf{r}_{i}^{a}) \left( -\f{\hbar^{2} \nabla^{2}}{2m} - \frac{Z_{1} e^{2}}{\abs{\mathbf{r} - \mathbf{r}_{1}^{a}}} - \frac{Z_{2} e^{2}}{\abs{\mathbf{r} - \mathbf{r}_{2}^{a}}} \right) \phi_{s} (\mathbf{r} - \mathbf{r}_{j}^{a})  ,\\
+	S_{ij} = \dps \int d \mathbf{r} \phi_{s}^{*} (\mathbf{r} - \mathbf{r}_{i}^{a}) \phi_{s} (\mathbf{r} - \mathbf{r}_{j}^{a}) .
+\end{gather}
+Các yếu tố ma trận ở phương trình (11) là không thể tính được bằng lý thuyết, thay vì đi tính các yếu tố ma trận trên, người ta xem chúng như các thông số của mô hình đang được áp dụng. Các thông số này sẽ được chọn sao cho kết quả của mô hình phù hợp với thực nghiệm nhất có thể ví dụ như DFT.
+
+
+
+
+
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{refs}
+
+	
+	
+\end{document}
