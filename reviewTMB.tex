@@ -62,7 +62,7 @@
 	colorlinks=true,
 	linkcolor=blue,
 	filecolor=magenta,      
-	urlcolor=cyan,
+	urlcolor=blue,
 	pdftitle={},
 	pdfpagemode=FullScreen,
 }
@@ -72,6 +72,7 @@
 \begin{document}
 \setlength{\parindent}{20pt}
 \newpage
+\date{05 Jul, 2025}
 \author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
 \maketitle
 \section{Giới thiệu}
@@ -79,7 +80,8 @@ Trong phần này, chúng ta sẽ tổng hợp lại kiến thức về mô hìn
 
 Bên cạnh đó ở mục ... cũng có đi qua một mô hình được sử dụng từ bài báo thực tế để cho cái nhìn trực quan hơn.
 
-Phần code và file latex được publish ở trên \hyperlink{https://github.com/nguyn21012003/ReviewTBM}{github cá nhân}
+Phần code và file latex được publish ở trên
+\href{https://github.com/nguyn21012003/ReviewTBM}{github cá nhân}
 
 \section{Gần đúng điện tử tự do}
 Trong gần đúng điện tử độc lập, trạng thái dừng của điện tử trong chất rắn được mô tả bởi phương trình Schr\"{o}dinger một hạt không phụ thuộc thời gian
@@ -160,6 +162,73 @@ trong đó
 	S_{ij} = \dps \int d \mathbf{r} \phi_{s}^{*} (\mathbf{r} - \mathbf{r}_{i}^{a}) \phi_{s} (\mathbf{r} - \mathbf{r}_{j}^{a}) .
 \end{gather}
 Các yếu tố ma trận ở phương trình (11) là không thể tính được bằng lý thuyết, thay vì đi tính các yếu tố ma trận trên, người ta xem chúng như các thông số của mô hình đang được áp dụng. Các thông số này sẽ được chọn sao cho kết quả của mô hình phù hợp với thực nghiệm nhất có thể ví dụ như DFT.
+
+
+\section{Mô hình điện tử liên kết chặt áp dụng cho tinh thể}
+Vector vị trí của nguyên tử trong tinh thể được biểu diễn bởi
+\begin{gather}
+	\mathbf{r}_{i}^{a} = \mathbf{R}_{n} + \mathbf{r}_{c},
+\end{gather}
+trong đó $\mathbf{R}_{n}$ là vị trí ô mạng Bravais và $\mathbf{r}_{c}$ là vị trí tương đối của nguyên tử trong ô mạng.
+
+Hàm sóng LCAO (3) được viết dưới dạng
+\begin{gather}
+	\psi_{\text{LCAO}}(\mathbf{r}) = \sum_{n=1}^{N} \sum_{c=1}^{N_{c}} \sum_{\alpha=1}^{N_{\text{orb}}} C_{\alpha c} (\mathbf{R}_{n}) \phi_{\alpha} (\mathbf{r} - \mathbf{R}_{n} - \mathbf{r}_{c}),
+\end{gather}
+trong đó $\phi_{\alpha}$ là hàm orbital nguyên tử, $N_{\text{orb}}$ là tổng số orbital của 1 nguyên tử, $N_{c}$ là tổng số nguyên tử trong 1 ô cơ sở à $N$ là tổng số ô cơ sở trong mạng.
+
+Dựa trên hàm sóng LCAO, người ta xây dựng hàm sóng Bloch có dạng
+\begin{gather}
+	\psi_{\mathbf{k}}(\mathbf{r}) = \sum_{c=1}^{N_{c}} \sum_{\alpha=1}^{N_{\text{orb}}} C_{\alpha c} (\mathbf{k}) \sum_{n=1}^{N} e^{i \mathbf{k} \cdot (\mathbf{R}_{n} + \mathbf{r}_{c})} \phi_{\alpha} (\mathbf{r} - \mathbf{R}_{n} - \mathbf{r}_{c}).
+\end{gather}
+Dễ thấy hàm sóng (15) thoả mãn định lý Bloch, tức là
+\begin{gather}
+	\psi_{\mathbf{k}}(\mathbf{r} + \mathbf{R}_{m}) = \psi_{\mathbf{k}}(\mathbf{r}) e^{i \mathbf{k} \cdot \mathbf{R}_{m}}.
+\end{gather}
+Hàm sóng Bloch (15) cũng có thể biểu diễn như
+\begin{gather}
+	\psi_{\mathbf{k}}(\mathbf{r}) = e^{i \mathbf{k} \cdot \mathbf{r}} u_{\mathbf{k}} (\mathbf{r}),
+\end{gather}
+trong đó
+\begin{gather}
+	u_{\mathbf{k}}(\mathbf{r}) = \sum_{c=1}^{N_{c}} \sum_{\alpha=1}^{N_{\text{orb}}} C_{\alpha c} (\mathbf{k}) \sum_{n=1}^{N} e^{-i \mathbf{k} \cdot (\mathbf{r} - \mathbf{R}_{n} - \mathbf{r}_{c})} \phi_{\alpha} (\mathbf{r} - \mathbf{R}_{n} - \mathbf{r}_{c}).
+\end{gather}
+\underline{Lưu ý:} Để ý rằng nghiệm riêng $C_{\alpha c}(\mathbf{k})$ ở phương trình (15) là một hàm không tuần hoàn trong không gian thực, tức là không thoả mãn định lý Bloch (16), nhưng toàn bộ hàm sóng LCAO thì thoả mãn được định lý Bloch.
+
+Thay hàm sóng Bloch (17) vào phương trình Schr\"{o}dinger một hạt (1), và nhân trái với liên hợp Hermitian $e^{-i \mathbf{k} \cdot \mathbf{r}_{c'}} \phi_{\alpha'}^{*} (\mathbf{r} - \mathbf{r}_{c'})$ và lấy tích phân theo $\mathbf{r}$ ta được hệ phương trình theo $\alpha, c$
+\begin{gather}
+	\sum_{c=1}^{N_{c}} \sum_{\alpha=1}^{N_{\text{orb}}} \left(H_{\alpha' c', \alpha c} (\mathbf{k}) -\epsilon(\mathbf{k}) S_{\alpha' c', \alpha c} (\mathbf{k})\right) C_{\alpha c} (\mathbf{k}) = 0,
+\end{gather}
+trong đó
+\begin{gather}
+	H_{\alpha' c', \alpha c} (\mathbf{k}) = \sum_{n=1}^{N} e^{i \mathbf{k} \cdot ( \mathbf{R}_{n} + \mathbf{r}_{c} - \mathbf{r}_{c'} )} \dps \int d\mathbf{r} \phi_{\alpha'}^{*} (\mathbf{r} - \mathbf{r}_{c'}) H_{1e} \phi_{\alpha} (\mathbf{r} - \mathbf{R}_{n} - \mathbf{r}_{c}), \\
+	S_{\alpha' c', \alpha c} (\mathbf{k}) = \sum_{n=1}^{N} e^{i \mathbf{k} \cdot ( \mathbf{R}_{n} + \mathbf{r}_{c} - \mathbf{r}_{c'} )} \dps \int d\mathbf{r} \phi_{\alpha'}^{*} (\mathbf{r} - \mathbf{r}_{c'}) \phi_{\alpha} (\mathbf{r} - \mathbf{R}_{n} - \mathbf{r}_{c}).
+\end{gather}
+\underline{Lưu ý:} Phép tổng trong phương trình (19) chỉ bao gồm tổng các orbital của các nguyên tử trong một ô cơ sở, không bao gồm tổng các ô cơ sở của mạng. \\ 
+Nếu bỏ qua tích phân chồng phủ giữa hai nguyên tử khác nhau thì phương trình (19) trở thành 
+\begin{gather}
+	\sum_{c=1}^{N_{c}} \sum_{\alpha=1}^{N_{\text{orb}}} H_{\alpha' c', \alpha c} C_{\alpha c} (\mathbf{k}) = 0.
+\end{gather}
+Phương trình (22) mang tính bán thực nghiệm, các yếu tô ma trận Hamiltonian trên không thể tính bằng phương pháp lý thuyết thuần được mà phải được định nghĩa bởi các thông số hiện tượng luận mô tả năng lượng ``on-site'' và năng lượng ``hopping''. Chéo hoá ma trận Hamiltonian sau khi đã thông số hoá để nhận được cấu trúc dải năng lượng. Ma trận Hamiltonian có kích thước là $N_{c} N_{\text{orb}} \times N_{c} N_{\text{orb}}$ $\Rightarrow$ số dải năng lượng là $N_{\text{band}} = N_{c} N_{\text{orb}}$, tức là số dải bằng tổng sô orbital trong một ô cơ sở. (Xem thêm ví dụ trong slide Thầy Đức).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
